@@ -7,7 +7,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Trunk Check
         uses: trunk-io/trunk-action@v1
   tests:
@@ -16,7 +16,7 @@ jobs:
       matrix:
         test: [unit, api]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: install poetry
         run: pip install poetry
       - uses: actions/setup-python@v4
@@ -28,7 +28,7 @@ jobs:
       - name: Run tests
         run: poetry run pytest tests/${{ matrix.test }} --cov=. --cov-report=xml
       - name: Upload test coverage
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           flags: ${{ matrix.test }}
           token: ${{ secrets.CODECOV_TOKEN }}
