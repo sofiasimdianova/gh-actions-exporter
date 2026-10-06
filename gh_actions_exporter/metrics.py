@@ -128,8 +128,7 @@ class Metrics(object):
         otherwise return "dev".
         """
         ref: str
-        if workflow_run.event == "pull_request":
-            assert workflow_run.pull_requests
+        if workflow_run.event == "pull_request" and workflow_run.pull_requests:
             ref = workflow_run.pull_requests[0].base.ref
         else:
             ref = workflow_run.head_branch
